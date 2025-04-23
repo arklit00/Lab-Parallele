@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Shopping App API
+  version: 1.0.0
+  description: API for managing and purchasing items in a shopping app.
+
+paths:
+  /items:
+    get:
+      summary: Get all items
+      responses:
+        '200':
+          description: A list of all items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+  /items/buy/{id}:
+    post:
+      summary: Buy an item by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Item bought successfully
+        '400':
+          description: Invalid item ID or out of stock
+
+  /items/reset:
+    post:
+      summary: Reset all item quantities
+      responses:
+        '200':
+          description: All items reset
+
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        originalQuantity:
+          type: integer
+        currentQuantity:
+          type: integer

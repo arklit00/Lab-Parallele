@@ -4,5 +4,7 @@ services:
   backend:
     build: .
     ports:
-      - "8081:8081"
-    restart: unless-stopped
+      - "8081:8081"     # Map host port 8081 to container port 8081
+    environment:
+      - PORT=8081       # Pass PORT environment variable to container
+      - HOST=0.0.0.0    # Pass HOST environment variable to container

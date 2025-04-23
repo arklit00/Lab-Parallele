@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment                  # Resource type is Deployment
+metadata:
+  name: backend-deployment       # Name of this deployment
+  labels:
+    app: backend                 # Label to identify this app
+spec:
+  replicas: 2                    # Number of pod replicas to run
+  selector:
+    matchLabels:
+      app: backend               # Selector to match pods with this label
+  template:                      # Pod template for new pods
+    metadata:
+      labels:
+        app: backend             # Labels assigned to pods
+    spec:
+      containers:
+        - name: backend          # Container name inside pod
+          image: arklit00/lab-parallele-backend:latest  # Docker image to use
+          ports:
+            - containerPort: 8081   # Port exposed by the container
+          env:
+            - name: PORT
+              value: "8081"         # Environment variable PORT inside container
+            - name: HOST
+              value: "0.0.0.0"      # Environment variable HOST inside container
+          resources:
+            limits:                 # Maximum resources container can use
+              memory: "256Mi"
+              cpu: "500m"
+            requests:               # Resources requested (guaranteed) for container
+              memory: "128Mi"
+              cpu: "250m"
