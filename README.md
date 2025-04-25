@@ -1,5 +1,5 @@
 # Prerequisites
-Docker and Docker Compose installed with Kubernetes enabled (or Kubernetes cluster).
+Docker and Docker Compose installed and running with Kubernetes enabled (or Kubernetes cluster).
 
 JDK 17+ (Java must be installed).
 
